@@ -20,7 +20,16 @@ jobs:
 
       - name: Build
         run: |
-          ./config
-          make
-          make test
-          make install
+          ./config no-shared no-tests
+          make -j$(nproc)
+          make install DESTDIR=install
+          mkdir openssl-3.0.15
+          cp -r install/lib openssl-3.0.15
+          cp -r install/include openssl-3.0.15
+
+      - name: Upload OpenSSL libraries
+        uses: actions/upload-artifact@v4
+        with:
+          name: openssl-3.0.15-linux
+          path: openssl-3.0.15
+          retention-days: 400

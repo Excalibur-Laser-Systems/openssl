@@ -26,7 +26,16 @@ jobs:
 
       - name: Build
         run: |
-          perl Configure VC-WIN64A
+          perl Configure VC-WIN64A no-shared no-tests
           nmake
-          nmake test
-          nmake install
+          nmake install DESTDIR=install
+          mkdir openssl-3.0.15
+          xcopy install/lib openssl-3.0.15 /E
+          xcopy install/include openssl-3.0.15 /E
+
+      - name: Upload OpenSSL libraries
+        uses: actions/upload-artifact@v4
+        with:
+          name: openssl-3.0.15-windows
+          path: openssl-3.0.15
+          retention-days: 400
