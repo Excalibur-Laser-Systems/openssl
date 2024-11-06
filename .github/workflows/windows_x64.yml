@@ -1,0 +1,32 @@
+name: Windows 2019
+
+on:
+  push:
+    branches:
+      - openssl-3.0.15-compilation
+
+jobs:
+  build:
+    runs-on: windows-2019
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - uses: shogo82148/actions-setup-perl@v1
+        with:
+          perl-version: "5.32"
+          distribution: strawberry
+
+      - name: Add C++ tools to environment
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Setup NASM
+        uses: ilammy/setup-nasm@v1
+
+      - name: Build
+        run: |
+          perl Configure VC-WIN64A
+          nmake
+          nmake test
+          nmake install

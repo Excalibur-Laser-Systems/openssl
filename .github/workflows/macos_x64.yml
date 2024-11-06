@@ -1,0 +1,26 @@
+name: MacOS 13
+
+on:
+  push:
+    branches:
+      - openssl-3.0.15-compilation
+
+jobs:
+  build:
+    runs-on: macos-13
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          brew update
+          brew install perl
+          
+      - name: Build
+        run: |
+          ./Configure darwin64-x86_64-cc
+          make
+          make test
+          sudo make install
