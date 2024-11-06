@@ -30,8 +30,8 @@ jobs:
           nmake build_libs
           nmake install DESTDIR=install
           mkdir -p openssl-3.0.15/lib
-          xcopy libcrypto.lib openssl-3.0.15/lib
-          xcopy libssl.lib openssl-3.0.15/lib
+          xcopy libcrypto.lib openssl-3.0.15\lib
+          xcopy libssl.lib openssl-3.0.15\lib
           xcopy "install/Program Files/OpenSSL/include" openssl-3.0.15 /E
 
       - name: Upload OpenSSL libraries
