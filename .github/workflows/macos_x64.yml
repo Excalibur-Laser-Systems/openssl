@@ -25,7 +25,7 @@ jobs:
           make install DESTDIR=install
           mkdir -p openssl-3.0.15/lib
           cp libcrypto.a libssl.a openssl-3.0.15/lib
-          cp -r install/include openssl-3.0.15
+          cp -r install/usr/local/include openssl-3.0.15
 
       - name: Upload OpenSSL libraries
         uses: actions/upload-artifact@v4
