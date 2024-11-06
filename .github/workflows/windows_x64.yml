@@ -27,10 +27,11 @@ jobs:
       - name: Build
         run: |
           perl Configure VC-WIN64A no-shared no-tests
-          nmake
+          nmake build_libs
           nmake install DESTDIR=install
-          mkdir openssl-3.0.15
-          xcopy install/lib openssl-3.0.15 /E
+          mkdir -p openssl-3.0.15/lib
+          xcopy libcrypto.lib openssl-3.0.15/lib
+          xcopy libssl.lib openssl-3.0.15/lib
           xcopy install/include openssl-3.0.15 /E
 
       - name: Upload OpenSSL libraries
