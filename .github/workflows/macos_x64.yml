@@ -23,8 +23,8 @@ jobs:
           ./Configure darwin64-x86_64-cc no-tests
           make -j$(sysctl -n hw.ncpu) build_libs
           make install DESTDIR=install
-          mkdir openssl-3.0.15
-          cp -r install/usr/local/lib openssl-3.0.15
+          mkdir -p openssl-3.0.15/lib
+          cp install/usr/local/lib/libcrypto* install/usr/local/lib/libssl*  openssl-3.0.15/lib
           cp -r install/usr/local/include openssl-3.0.15
 
       - name: Upload OpenSSL libraries
