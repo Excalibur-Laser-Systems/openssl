@@ -3,7 +3,7 @@ name: MacOS 13
 on:
   push:
     branches:
-      - openssl-3.0.15-compilation
+      - openssl-3.0.15-shared
 
 jobs:
   build:
