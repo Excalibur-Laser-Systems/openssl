@@ -24,7 +24,7 @@ jobs:
           make -j$(nproc) build_libs
           make install DESTDIR=install
           mkdir -p openssl-3.0.15/lib
-          cp install/usr/local/lib64/libcrypto.so.3 install/usr/local/lib64/libssl.so.3 openssl-3.0.15/lib
+          cp install/usr/local/lib64/libcrypto.so* install/usr/local/lib64/libssl.so* openssl-3.0.15/lib
           cp -r install/usr/local/include openssl-3.0.15
 
       - name: Upload OpenSSL libraries
